@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="EmpMapper">
+    <!--
+    返回单个对象
+    public Emp findOne(){};
+    使用Mapper实现，select标签说明：
+    id 相当于命名
+    resultType 返回值类型，使用哪个类进行封装
+    parameterType 参数类型
+    SQL语句就是具体的实现
+    -->
+    <select id="findOne" resultType="emp">
+        select * from emp where empno = 7499
+    </select>
+    <!--
+       public Map<key,Emp> findEmpMap();
+       key 指定数据库字段名，不是类的字段名，
+       比较我们定义的类是Emp.empno，但是数据库表的字段名是EMPNO，所以这里查询时，指定key是EMPNO
+       -->
+    <select id="findEmpMap" resultType="map">
+        select * from emp
+    </select>
+
+    <!--
+    单个参数的形式
+    根据员工编号查询员工信息，返回单个员工对象
+    public Emp findByEmpno(int empno);
+    parameterType 在有参数的情况下也可以省略不写，mybatis可以根据实际情况自动判断
+    参数占位格式：
+    ${} mybatis底层使用Statment语句对象，参数是以字符串拼接的形式设置
+    #{} mybatis底层使用preparedStatment语句对象，参数是以?的形式设置，可以防止sql注入
+    以后建议使用#{}
+    -->
+    <select id="findByEmpno" resultType="emp" parameterType="int">
+        select * from emp where empno = #{empno}
+    </select>
+
+    <!--
+    参数为map集合
+    查询指定部门员和指定最低薪资的员工信息
+    20号部门且工资在1500以上的员工信息
+    public List<Emp> findEmpByDeptnoAndSal(int deptno,double sal);
+    mybatis中 >、< 需要转义：&gt; &lt; 参照html转义，w3school在线文档找对应
+    #{}中写的是map集合中的键
+    Map<String, Object> args = new HashMap<>();
+    args.put("deptno", 20);
+    args.put("sal", 1500.0);
+    -->
+    <select id="findEmpByDeptnoAndSal" resultType="emp" parameterType="map">
+        select * from emp where deptno = #{deptno} and sal &gt; #{sal}
+    </select>
+
+    <!--
+    参数为Emp对象
+    查询指定部门员和指定最低薪资的员工信息
+    20号部门且工资在1500以上的员工信息
+    public List<Emp> findEmpByDeptnoAndSal2(Emp emp);
+    mybatis中 >、< 需要转义：&gt; &lt; 参照html转义，w3school在线文档找对应
+    参数写Emp对象中的具体属性：deptno、sal
+    -->
+    <select id="findEmpByDeptnoAndSal2" resultType="emp" parameterType="emp">
+        select * from emp where deptno = #{deptno} and sal &gt; #{sal}
+    </select>
+
+    <!--
+    添加员工信息
+    resultType 无需指定
+    insert update delete 标签中没有resultType
+
+    insert update delete mybatis默认不提交事务，需要提交事务，有两种方式处理
+    1、session.commit();手动提交事务
+    2、session = factory.openSession(true);获取SqlSession对象时，设置事务自动提交
+    -->
+    <insert id="addEmp" parameterType="emp">
+        insert into emp(empno, ename, job, mgr, hiredate, sal, comm, deptno)
+        values(#{empno}, #{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm}, #{deptno})
+    </insert>
+</mapper>
