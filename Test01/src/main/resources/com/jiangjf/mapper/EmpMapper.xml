@@ -78,4 +78,25 @@
         insert into emp(empno, ename, job, mgr, hiredate, sal, comm, deptno)
         values(#{empno}, #{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm}, #{deptno})
     </insert>
+
+    <!--
+    修改员工信息
+    -->
+    <update id="updateEmp" parameterType="emp">
+        update emp
+        set ename = #{ename},
+            job = #{job},
+            mgr = #{mgr},
+            hiredate = #{hiredate},
+            sal = #{sal},
+            comm = #{comm},
+            deptno = #{deptno}
+        where empno = #{empno}
+    </update>
+    <!--
+    删除员工信息
+    -->
+    <delete id="deleteEmp" parameterType="int">
+        delete from emp where empno = #{empno}
+    </delete>
 </mapper>

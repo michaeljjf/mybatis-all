@@ -82,4 +82,41 @@ public class Test1 extends BaseTest {
          */
     }
 
+    @Test
+    public void testUpdateEmp() {
+        Emp emp = new Emp();
+        emp.setEmpno(7935);
+        emp.setEname("Jiangjf");
+        emp.setJob("PHP开发工程师");
+        emp.setMgr(7782);
+        emp.setHiredate(Date.valueOf("2014-06-16"));
+        emp.setSal(2500.0);
+        emp.setComm(600.0);
+        emp.setDeptno(20);
+        int rows = session.update("EmpMapper.updateEmp", emp);
+        // 手动提交事务
+        session.commit();
+        System.out.println("受影响的行数：" + rows);
+
+        /*
+         * insert update delete 需要事务提交，有两种方式处理
+         * 1、session.commit();手动提交事务
+         * 2、session = factory.openSession(true);获取SqlSession对象时，设置事务自动提交
+         */
+    }
+
+    @Test
+    public void testDeleteEmp() {
+        int rows = session.delete("EmpMapper.deleteEmp", 7936);
+        // 手动提交事务
+        session.commit();
+        System.out.println("受影响的行数：" + rows);
+
+        /*
+         * insert update delete 需要事务提交，有两种方式处理
+         * 1、session.commit();手动提交事务
+         * 2、session = factory.openSession(true);获取SqlSession对象时，设置事务自动提交
+         */
+    }
+
 }
