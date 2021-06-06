@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 定义从配置文件中读取配置 -->
+    <properties resource="jdbc.properties"/>
+    <settings>
+        <!-- 指定 MyBatis 所用日志的具体实现，未指定时将自动查找 SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING -->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    
+    <typeAliases>
+        <!-- 1、每个类定义一个别名 -->
+<!--        <typeAlias type="com.jiangjf.pojo.Dept" alias="dept"/> -->
+        <!-- 2、包扫描起别名模式，别名的格式：类名的首字母大写，如Dept的别名是dept -->
+        <package name="com.jiangjf.pojo"/>
+    </typeAliases>
+    
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!-- 取配置中的内容 ${driver} -->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--
+        配置Mapper的方式
+        1、单个配置
+        <mapper resource="com/jiangjf/mapper/DeptMapper.xml"/>
+        2、包扫描模式
+        <package name="com.jiangjf.mapper"/>
+         -->
+<!--        <mapper resource="com/jiangjf/mapper/EmpMapper.xml"/>-->
+        <mapper class="com.jiangjf.mapper.EmpMapper"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+1、接口的名字和Mapper映射文件名称必须保持一致（不包含扩展名），如 EmpMapper.java、EmpMapper.xml，都是EmpMapper
+2、Mapper映射文件的namespace必须是接口的全路径名，如 namespace="com.jiangjf.mapper.EmpMapper"
+3、sql语句的id必须是对应方法的名称，如 id="findAll"
+4、EmpMapper.xml映射文件，保证编译后和接口放在同一个目录下
+-->
+<mapper namespace="com.jiangjf.mapper.EmpMapper">
+    <!-- List<Emp> findAll(); -->
+    <select id="findAll" resultType="emp">
+        select * from emp
+    </select>
+    <!--Emp findByEmpno(int empno);-->
+    <select id="findByEmpno" resultType="emp">
+        select * from emp where empno = #{empno}
+    </select>
+    <!--
+    List<Emp> findByDeptnoAndSal(int deptno, double sal);
+    取参数的方式：
+    1、arg* arg0 arg1 ... （数字是索引，从0开始）
+    select * from emp where deptno = #{arg0} and sal >= #{arg1}
+    2、param* param1 param2 ...（数字是编号，从1开始）
+    select * from emp where deptno = #{param1} and sal >= #{param2}
+    3、别名（使用别名后，arg*方式就不好使了，可以继续使用param*）
+    List<Emp> findByDeptnoAndSal(@Param("deptNO") int deptno,@Param("sals") double sal);
+    select * from emp where deptno = #{deptNO} and sal >= #{sals}
+    -->
+    <select id="findByDeptnoAndSal" resultType="emp">
+        select * from emp where deptno = #{deptno} and sal >= #{sal}
+    </select>
+
+    <select id="findByDeptnoAndSal2" resultType="emp" parameterType="map">
+        select * from emp where deptno = #{deptno} and sal >= #{sal}
+    </select>
+
+    <select id="findByDeptnoAndSal3" resultType="emp">
+        select * from emp where deptno = #{arg0.deptno} and sal >= #{arg1.sal}
+        <!-- select * from emp where deptno = #{param1.deptno} and sal >= #{param2.sal} -->
+    </select>
+
+    <select id="findByDeptnoAndSal4" resultType="emp">
+        select * from emp where deptno = #{empa.deptno} and sal >= #{empb.sal}
+    </select>
+</mapper>
