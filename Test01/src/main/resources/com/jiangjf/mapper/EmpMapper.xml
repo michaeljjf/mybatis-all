@@ -67,6 +67,7 @@
 
     <!--
     添加员工信息
+    public int addEmp(Emp emp);
     resultType 无需指定
     insert update delete 标签中没有resultType
 
@@ -81,6 +82,7 @@
 
     <!--
     修改员工信息
+    public int updateEmp(Emp emp);
     -->
     <update id="updateEmp" parameterType="emp">
         update emp
@@ -95,6 +97,7 @@
     </update>
     <!--
     删除员工信息
+    public int deleteEmp(int empno);
     -->
     <delete id="deleteEmp" parameterType="int">
         delete from emp where empno = #{empno}
