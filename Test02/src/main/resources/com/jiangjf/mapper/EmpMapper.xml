@@ -51,4 +51,29 @@
     <select id="findByEname" resultType="emp">
         select * from emp where ename like concat('%', #{ename}, '%')
     </select>
+
+    <!--
+    动态拼接查询条件
+    List<Emp> findByCondition(Emp emp);
+    -->
+    <select id="findByCondition" resultType="emp">
+        select * from emp
+        <where>
+            <if test="empno != null">
+                and empno = #{empno}
+            </if>
+            <if test="ename != null and ename != ''">
+                and ename like concat('%', #{ename}, '%')
+            </if>
+            <if test="hiredate != null">
+                and hiredate = #{hiredate}
+            </if>
+            <!--choose when 类似 switch case-->
+<!--            <choose>
+                <when test="">
+
+                </when>
+            </choose>-->
+        </where>
+    </select>
 </mapper>

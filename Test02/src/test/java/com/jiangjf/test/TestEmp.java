@@ -4,11 +4,12 @@ import com.jiangjf.mapper.EmpMapper;
 import com.jiangjf.pojo.Emp;
 import org.junit.Test;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestBaseEmp extends TestBase {
+public class TestEmp extends TestBase {
 
     @Test
     public void testFindAll() {
@@ -69,6 +70,18 @@ public class TestBaseEmp extends TestBase {
     public void testFindByEname() {
         EmpMapper empMapper = session.getMapper(EmpMapper.class);
         List<Emp> empList = empMapper.findByEname("a");
+        empList.forEach(System.out::println);
+    }
+
+    @Test
+    public void testFindByCondition() {
+        // 测试动态拼接查询条件
+        EmpMapper empMapper = session.getMapper(EmpMapper.class);
+        Emp emp = new Emp();
+//        emp.setEmpno(1111);
+//        emp.setEname("s");
+        emp.setHiredate(Date.valueOf("1981-04-02"));
+        List<Emp> empList = empMapper.findByCondition(emp);
         empList.forEach(System.out::println);
     }
 }

@@ -42,5 +42,10 @@ public interface EmpMapper {
      */
     List<Emp> findByEname(String ename);
 
-
+    /**
+     * 动态创建查询条件
+     * @param emp 参数对象
+     * @return 返回Emp对象的List集合
+     */
+    List<Emp> findByCondition(Emp emp);
 }
