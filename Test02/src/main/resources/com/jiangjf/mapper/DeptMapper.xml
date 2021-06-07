@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiangjf.mapper.DeptMapper">
+    <!--
+    第一种获取自增编号的方式：
+    useGeneratedKeys="true" keyProperty="deptno"
+    -->
+    <insert id="addDept" useGeneratedKeys="true" keyProperty="deptno">
+        insert into dept(deptno,dname,loc) values(default, #{dname}, #{loc})
+    </insert>
+    <!--
+    第二种获取自增编号的方式：
+    <selectKey order="AFTER" keyProperty="deptno" resultType="int">
+        select @@identity
+    </selectKey>
+    -->
+    <insert id="addDept2">
+        <selectKey order="AFTER" keyProperty="deptno" resultType="int">
+            select @@identity
+        </selectKey>
+        insert into dept(deptno,dname,loc) values(default, #{dname}, #{loc})
+    </insert>
+</mapper>

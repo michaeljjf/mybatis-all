@@ -34,4 +34,11 @@ public interface EmpMapper {
     List<Emp> findByDeptnoAndSal3(Emp empa, Emp empb);
 
     List<Emp> findByDeptnoAndSal4(@Param("empa") Emp empa, @Param("empb") Emp empb);
+
+    /**
+     * 模糊查询
+     * @param ename
+     * @return
+     */
+    List<Emp> findByEname(String ename);
 }

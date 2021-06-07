@@ -64,4 +64,11 @@ public class Test1 extends BaseTest {
         List<Emp> empList = empMapper.findByDeptnoAndSal4(empa, empb);
         empList.forEach(System.out::println);
     }
+
+    @Test
+    public void testFindByEname() {
+        EmpMapper empMapper = session.getMapper(EmpMapper.class);
+        List<Emp> empList = empMapper.findByEname("a");
+        empList.forEach(System.out::println);
+    }
 }

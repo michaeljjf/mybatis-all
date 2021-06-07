@@ -34,10 +34,12 @@
         配置Mapper的方式
         1、单个配置
         <mapper resource="com/jiangjf/mapper/DeptMapper.xml"/>
+        <mapper class="com.jiangjf.mapper.EmpMapper"/>
         2、包扫描模式
         <package name="com.jiangjf.mapper"/>
          -->
 <!--        <mapper resource="com/jiangjf/mapper/EmpMapper.xml"/>-->
-        <mapper class="com.jiangjf.mapper.EmpMapper"/>
+<!--        <mapper class="com.jiangjf.mapper.EmpMapper"/>-->
+        <package name="com.jiangjf.mapper"/>
     </mappers>
 </configuration>

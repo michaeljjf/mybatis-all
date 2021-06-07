@@ -44,4 +44,11 @@
     <select id="findByDeptnoAndSal4" resultType="emp">
         select * from emp where deptno = #{empa.deptno} and sal >= #{empb.sal}
     </select>
+    <!--
+    like 查询写法
+    List<Emp> findByEname(String ename);
+    -->
+    <select id="findByEname" resultType="emp">
+        select * from emp where ename like concat('%', #{ename}, '%')
+    </select>
 </mapper>
