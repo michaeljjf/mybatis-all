@@ -4,7 +4,7 @@ import com.jiangjf.mapper.DeptMapper;
 import com.jiangjf.pojo.Dept;
 import org.junit.Test;
 
-public class TestDept extends BaseTest {
+public class TestBaseDept extends TestBase {
     @Test
     public void testAddDept() {
         DeptMapper deptMapper = session.getMapper(DeptMapper.class);

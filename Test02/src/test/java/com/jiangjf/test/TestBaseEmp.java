@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestEmp extends BaseTest {
+public class TestBaseEmp extends TestBase {
 
     @Test
     public void testFindAll() {

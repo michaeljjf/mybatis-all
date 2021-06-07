@@ -10,7 +10,7 @@ import org.junit.Before;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class BaseTest {
+public class TestBase {
 
     protected SqlSession session = null;
 
