@@ -84,4 +84,15 @@ public class TestEmp extends TestBase {
         List<Emp> empList = empMapper.findByCondition(emp);
         empList.forEach(System.out::println);
     }
+
+    @Test
+    public void TestUpdateEmpByCondition() {
+        EmpMapper empMapper = session.getMapper(EmpMapper.class);
+        Emp emp = new Emp();
+        emp.setEmpno(7935);
+        emp.setEname("张三");
+        emp.setDeptno(10);
+        int rows = empMapper.updateEmpByCondition(emp);
+        System.out.println("受影响的行数：" + rows);
+    }
 }

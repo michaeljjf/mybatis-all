@@ -48,4 +48,11 @@ public interface EmpMapper {
      * @return 返回Emp对象的List集合
      */
     List<Emp> findByCondition(Emp emp);
+
+    /**
+     * 动态创建update set条件更新员工信息
+     * @param emp
+     * @return
+     */
+    int updateEmpByCondition(Emp emp);
 }
