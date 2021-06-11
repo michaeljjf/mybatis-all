@@ -81,8 +81,8 @@ public class TestEmp extends TestBase {
         EmpMapper empMapper = session.getMapper(EmpMapper.class);
         Emp emp = new Emp();
 //        emp.setEmpno(1111);
-//        emp.setEname("s");
-        emp.setHiredate(Date.valueOf("1981-04-02"));
+        emp.setEname("JAME");
+//        emp.setHiredate(Date.valueOf("1981-04-02"));
         List<Emp> empList = empMapper.findByCondition(emp);
         empList.forEach(System.out::println);
     }

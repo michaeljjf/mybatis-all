@@ -62,8 +62,18 @@
             <if test="empno != null">
                 and empno = #{empno}
             </if>
+            <!--
+            concat 实现 like
             <if test="ename != null and ename != ''">
                 and ename like concat('%', #{ename}, '%')
+            </if>
+            -->
+            <!--
+            bind 方式实现 like
+            -->
+            <if test="ename != null and ename != ''">
+                <bind name="likeEname" value="'%'+ename+'%'"/>
+                and ename like #{likeEname}
             </if>
             <if test="hiredate != null">
                 and hiredate = #{hiredate}
