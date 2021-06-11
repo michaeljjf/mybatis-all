@@ -73,9 +73,11 @@ public class TestEmp extends TestBase {
         empList.forEach(System.out::println);
     }
 
+    /**
+     * 测试动态拼接查询条件
+     */
     @Test
     public void testFindByCondition() {
-        // 测试动态拼接查询条件
         EmpMapper empMapper = session.getMapper(EmpMapper.class);
         Emp emp = new Emp();
 //        emp.setEmpno(1111);
@@ -85,6 +87,10 @@ public class TestEmp extends TestBase {
         empList.forEach(System.out::println);
     }
 
+    /**
+     * 动态创建update set条件更新员工信息
+     * set 方式
+     */
     @Test
     public void TestUpdateEmpByCondition() {
         EmpMapper empMapper = session.getMapper(EmpMapper.class);
@@ -93,6 +99,21 @@ public class TestEmp extends TestBase {
         emp.setEname("张三");
         emp.setDeptno(10);
         int rows = empMapper.updateEmpByCondition(emp);
+        System.out.println("受影响的行数：" + rows);
+    }
+
+    /**
+     * 动态创建update set条件更新员工信息
+     * trim 方式
+     */
+    @Test
+    public void TestUpdateEmpByCondition2() {
+        EmpMapper empMapper = session.getMapper(EmpMapper.class);
+        Emp emp = new Emp();
+        emp.setEmpno(7935);
+        emp.setEname("张三2");
+        emp.setDeptno(10);
+        int rows = empMapper.updateEmpByCondition2(emp);
         System.out.println("受影响的行数：" + rows);
     }
 }

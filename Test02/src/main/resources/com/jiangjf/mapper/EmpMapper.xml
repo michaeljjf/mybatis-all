@@ -108,4 +108,42 @@
         </set>
         where empno = #{empno}
     </update>
+
+    <!--
+    动态串Set语句
+    int updateEmpByCondition2(Emp emp);
+    -->
+    <update id="updateEmpByCondition2">
+        update emp
+        <!--
+        prefix 要动态添加的前缀
+        prefixOverrides 要干掉的前缀
+        suffix 要补充的后缀
+        suffixOverrides 要干掉的后缀
+        -->
+        <trim prefix="Set" prefixOverrides="," suffix="" suffixOverrides="">
+            <if test="ename != null">
+                , ename = #{ename}
+            </if>
+            <if test="job !=null and job !=''">
+                , job = #{job}
+            </if>
+            <if test="mgr != null">
+                , mgr = #{mgr}
+            </if>
+            <if test="hiredate != null">
+                , hiredate = #{hiredate}
+            </if>
+            <if test="sal != null">
+                , sal = #{sal}
+            </if>
+            <if test="comm != null">
+                , comm = #{comm}
+            </if>
+            <if test="deptno != null">
+                , deptno = #{deptno}
+            </if>
+        </trim>
+        where empno = #{empno}
+    </update>
 </mapper>

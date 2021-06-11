@@ -51,8 +51,17 @@ public interface EmpMapper {
 
     /**
      * 动态创建update set条件更新员工信息
+     * set 方式
      * @param emp
      * @return
      */
     int updateEmpByCondition(Emp emp);
+
+    /**
+     * 动态创建update set条件更新员工信息
+     * trim 方式
+     * @param emp
+     * @return
+     */
+    int updateEmpByCondition2(Emp emp);
 }
