@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+1、接口的名字和Mapper映射文件名称必须保持一致（不包含扩展名），如 EmpMapper.java、EmpMapper.xml，都是EmpMapper
+2、Mapper映射文件的namespace必须是接口的全路径名，如 namespace="com.jiangjf.mapper.EmpMapper"
+3、sql语句的id必须是对应方法的名称，如 id="findAll"
+4、EmpMapper.xml映射文件，保证编译后和接口放在同一个目录下
+-->
+<mapper namespace="com.jiangjf.mapper.DeptMapper">
+
+    <!--
+    Dept findDeptJoinEmpsByDeptno(int deptno);
+    -->
+    <resultMap id="deptJoinEmps" type="dept">
+        <id column="deptno" property="deptno"></id>
+        <result column="dname" property="dname"></result>
+        <result column="loc" property="loc"></result>
+        <!--
+        collection 处理一对多关系的标签
+        ofType 集合里元素对应哪个对象
+        -->
+        <collection property="empList" ofType="emp">
+            <id column="empno" property="empno"></id>
+            <result column="ename" property="ename"></result>
+            <result column="job" property="job"></result>
+            <result column="sal" property="sal"></result>
+            <result column="hiredate" property="hiredate"></result>
+            <result column="mgr" property="mgr"></result>
+            <result column="comm" property="comm"></result>
+            <result column="deptno" property="deptno"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findDeptJoinEmpsByDeptno" resultMap="deptJoinEmps">
+        select *
+        from dept d
+        left join emp e on e.deptno = d.deptno
+        where d.deptno = #{deptno}
+    </select>
+
+</mapper>
