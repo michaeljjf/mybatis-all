@@ -64,4 +64,18 @@ public interface EmpMapper {
      * @return
      */
     int updateEmpByCondition2(Emp emp);
+
+    /**
+     * foreach 实现in条件查询1：array 方式
+     * @param empnos
+     * @return
+     */
+    List<Emp> findByEmpnos1(int[] empnos);
+
+    /**
+     * foreach 实现in条件查询2：List 方式
+     * @param empnos
+     * @return
+     */
+    List<Emp> findByEmpnos2(List<Integer> empnos);
 }

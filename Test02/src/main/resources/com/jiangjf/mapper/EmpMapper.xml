@@ -159,4 +159,36 @@
         </trim>
         where empno = #{empno}
     </update>
+
+    <!--
+    foreach 实现in条件查询1 array 方式
+    List<Emp> findByEmpnos1(int[] empnos);
+    -->
+    <select id="findByEmpnos1" resultType="emp">
+        <include refid="baseSelect"></include> where empno in
+        <!--
+        collection 遍历的集合或者数组，代表的就是传入参数
+        separator 多个元素用什么分割
+        open 以什么开头
+        close 以什么结尾
+        item 中间变更名
+        类似以下代码：
+        for (Person person : persionList)
+        collection对应persionList
+        item对应person
+        -->
+        <foreach collection="array" separator="," open="(" close=")" item="empno">
+            #{empno}
+        </foreach>
+    </select>
+    <!--
+    foreach 实现in条件查询2：List 方式
+    List<Emp> findByEmpnos2(List<Integer> empnos);
+    -->
+    <select id="findByEmpnos2" resultType="emp">
+        <include refid="baseSelect"></include> where empno in
+        <foreach collection="list" separator="," open="(" close=")" item="empno">
+            #{empno}
+        </foreach>
+    </select>
 </mapper>

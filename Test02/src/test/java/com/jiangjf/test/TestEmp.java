@@ -5,6 +5,7 @@ import com.jiangjf.pojo.Emp;
 import org.junit.Test;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +93,7 @@ public class TestEmp extends TestBase {
      * set 方式
      */
     @Test
-    public void TestUpdateEmpByCondition() {
+    public void testUpdateEmpByCondition() {
         EmpMapper empMapper = session.getMapper(EmpMapper.class);
         Emp emp = new Emp();
         emp.setEmpno(7935);
@@ -107,7 +108,7 @@ public class TestEmp extends TestBase {
      * trim 方式
      */
     @Test
-    public void TestUpdateEmpByCondition2() {
+    public void testUpdateEmpByCondition2() {
         EmpMapper empMapper = session.getMapper(EmpMapper.class);
         Emp emp = new Emp();
         emp.setEmpno(7935);
@@ -115,5 +116,23 @@ public class TestEmp extends TestBase {
         emp.setDeptno(10);
         int rows = empMapper.updateEmpByCondition2(emp);
         System.out.println("受影响的行数：" + rows);
+    }
+
+    @Test
+    public void testFindByEmpnos1() {
+        EmpMapper empMapper = session.getMapper(EmpMapper.class);
+        List<Emp> empList = empMapper.findByEmpnos1(new int[]{7369, 7499, 7521});
+        empList.forEach(System.out::println);
+    }
+
+    @Test
+    public void testFindByEmpnos2() {
+        EmpMapper empMapper = session.getMapper(EmpMapper.class);
+        List<Integer> empnoList = new ArrayList<>();
+        empnoList.add(7369);
+        empnoList.add(7499);
+        empnoList.add(7521);
+        List<Emp> empList = empMapper.findByEmpnos2(empnoList);
+        empList.forEach(System.out::println);
     }
 }
