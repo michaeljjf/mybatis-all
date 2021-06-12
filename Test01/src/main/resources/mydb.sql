@@ -109,17 +109,17 @@ INSERT INTO `salgrade` VALUES (5, 3001.00, 9999.00);
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-CREATE TABLE `projects`  (
+CREATE TABLE `project`  (
     `pid` int(2) NOT NULL AUTO_INCREMENT,
     `pname` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `money` int(11) NULL DEFAULT NULL,
     PRIMARY KEY (`pid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-INSERT INTO `projects` VALUES (1, ' ***大学OA', 500000);
-INSERT INTO `projects` VALUES (2, '学生选课系统', 100000);
-INSERT INTO `projects` VALUES (3, '讲师测评系统', 20000);
-INSERT INTO `projects` VALUES (4, '线上问答系统 ', 20000);
+INSERT INTO `project` VALUES (1, ' ***大学OA', 500000);
+INSERT INTO `project` VALUES (2, '学生选课系统', 100000);
+INSERT INTO `project` VALUES (3, '讲师测评系统', 20000);
+INSERT INTO `project` VALUES (4, '线上问答系统 ', 20000);
 
 CREATE TABLE `projectrecord`  (
     `empno` int(4) NOT NULL,
