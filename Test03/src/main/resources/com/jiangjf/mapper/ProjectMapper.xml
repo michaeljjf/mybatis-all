@@ -24,6 +24,11 @@
         <collection property="projectRecords" ofType="projectRecord">
             <id column="empno" property="empno"></id>
             <result column="pid" property="pid"></result>
+
+            <!--
+            property ProjectRecord的emp属性
+            javaType 元素对应哪个对象
+            -->
             <association property="emp" javaType="emp">
                 <id column="empno" property="empno"></id>
                 <result column="ename" property="ename"></result>
