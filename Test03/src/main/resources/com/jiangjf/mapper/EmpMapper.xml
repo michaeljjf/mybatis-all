@@ -17,7 +17,8 @@
         <result column="ename" property="name"/>
     </resultMap>
     <select id="findAll" resultMap="empResultMap">
-        select * from emp
+        select *
+        from emp
     </select>
 
     <!--
@@ -35,7 +36,7 @@
         <result column="deptno" property="deptno"></result>
 
         <!--
-        封装一对一信息关系的标签
+        association 封装一对一信息关系的标签
         property emp类的属性名
         javaType 用哪个类的对象给该属性赋值
         -->
