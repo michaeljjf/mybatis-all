@@ -108,3 +108,36 @@ INSERT INTO `salgrade` VALUES (4, 2001.00, 3000.00);
 INSERT INTO `salgrade` VALUES (5, 3001.00, 9999.00);
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE `projects`  (
+    `pid` int(2) NOT NULL AUTO_INCREMENT,
+    `pname` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `money` int(11) NULL DEFAULT NULL,
+    PRIMARY KEY (`pid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+INSERT INTO `projects` VALUES (1, ' ***大学OA', 500000);
+INSERT INTO `projects` VALUES (2, '学生选课系统', 100000);
+INSERT INTO `projects` VALUES (3, '讲师测评系统', 20000);
+INSERT INTO `projects` VALUES (4, '线上问答系统 ', 20000);
+
+CREATE TABLE `projectrecord`  (
+    `empno` int(4) NOT NULL,
+    `pid` int(2) NOT NULL,
+    PRIMARY KEY (`empno`, `pid`) USING BTREE,
+    INDEX `fk_project_pro`(`pid`) USING BTREE,
+    CONSTRAINT `fk_emp_pro` FOREIGN KEY (`empno`) REFERENCES `emp` (`EMPNO`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `fk_project_pro` FOREIGN KEY (`pid`) REFERENCES `projects` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+
+INSERT INTO `projectrecord` VALUES (7369, 1);
+INSERT INTO `projectrecord` VALUES (7521, 1);
+INSERT INTO `projectrecord` VALUES (7369, 2);
+INSERT INTO `projectrecord` VALUES (7499, 2);
+INSERT INTO `projectrecord` VALUES (7521, 2);
+INSERT INTO `projectrecord` VALUES (7369, 3);
+INSERT INTO `projectrecord` VALUES (7499, 3);
+INSERT INTO `projectrecord` VALUES (7521, 3);
+INSERT INTO `projectrecord` VALUES (7369, 4);
+INSERT INTO `projectrecord` VALUES (7499, 4);

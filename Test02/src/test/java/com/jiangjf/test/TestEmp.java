@@ -5,10 +5,7 @@ import com.jiangjf.pojo.Emp;
 import org.junit.Test;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TestEmp extends TestBase {
 
@@ -129,9 +126,10 @@ public class TestEmp extends TestBase {
     public void testFindByEmpnos2() {
         EmpMapper empMapper = session.getMapper(EmpMapper.class);
         List<Integer> empnoList = new ArrayList<>();
-        empnoList.add(7369);
-        empnoList.add(7499);
-        empnoList.add(7521);
+//        empnoList.add(7369);
+//        empnoList.add(7499);
+//        empnoList.add(7521);
+        Collections.addAll(empnoList, 7369, 7499, 7521);
         List<Emp> empList = empMapper.findByEmpnos2(empnoList);
         empList.forEach(System.out::println);
     }
