@@ -37,6 +37,10 @@ public class TestDept extends TestBase {
         DeptMapper deptMapper = session.getMapper(DeptMapper.class);
         Dept dept = deptMapper.findByDeptno(44);
         System.out.println(dept);
+
+        DeptMapper deptMapper2 = session.getMapper(DeptMapper.class);
+        Dept dept2 = deptMapper2.findByDeptno(44);
+        System.out.println(dept2);
     }
 
     @Test
