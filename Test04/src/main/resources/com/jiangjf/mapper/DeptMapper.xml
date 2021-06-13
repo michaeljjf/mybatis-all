@@ -17,6 +17,7 @@
         <result column="dname" property="dname"></result>
         <result column="loc" property="loc"></result>
         <!--
+        级联查询
         select="com.jiangjf.mapper.EmpMapper.findDeptByDeptno" 调用的另一个SQL语句
         property="empList" 对应dept的Emp对象的List集合
         javaType="list" 实体类的属性数据类型

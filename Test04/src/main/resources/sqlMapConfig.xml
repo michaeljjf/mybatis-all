@@ -11,9 +11,9 @@
         <!--是否开启延迟加载。是Mybatis是否启用懒加载的全局开关。
         当开启时，所有关联对象都会延迟加载。
         特定关联关系中可通过设置fetchType属性来覆盖该项的开关状态-->
-        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--<setting name="lazyLoadingEnabled" value="true"/>-->
         <!--当开启时，任何方法的调用都会懒加载对象的所有属性。否则，每个属性会按需加载,-->
-        <setting name="aggressiveLazyLoading" value="true"/>
+        <!--<setting name="aggressiveLazyLoading" value="true"/>-->
     </settings>
     
     <typeAliases>
